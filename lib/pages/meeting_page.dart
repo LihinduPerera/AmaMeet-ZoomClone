@@ -17,6 +17,10 @@ class MeetingPage extends StatelessWidget {
     _jmm.createMeeting(roomName: roomName, isAudioMuted: true, isVideoMuted: true);
   }
 
+  joinMeeting(BuildContext context) {
+    Navigator.pushNamed(context, '/video-meeting');
+  }
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -30,7 +34,7 @@ class MeetingPage extends StatelessWidget {
                 btnIcon: Icons.videocam,
               ),
               HomeBtnWidget(
-                onPressedFunction: (() {}),
+                onPressedFunction: () => joinMeeting(context) ,
                 btnText: 'Join Meeting',
                 btnIcon: Icons.add_box_rounded,
               ),

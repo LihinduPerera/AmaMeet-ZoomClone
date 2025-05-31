@@ -1,5 +1,6 @@
 import 'package:ama_meet/pages/home_page.dart';
 import 'package:ama_meet/pages/login_page.dart';
+import 'package:ama_meet/pages/video_call_page.dart';
 import 'package:ama_meet/resources/auth_methods.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -25,6 +26,7 @@ class MyApp extends StatelessWidget {
       routes: {
         '/login': (context) => const LoginPage(),
         '/home': (context) => HomePage(),
+        '/video-meeting': (context) => VideoCallPage(),
       },
       home: StreamBuilder(
         stream: AuthMethods().authChanges,
