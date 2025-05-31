@@ -12,6 +12,7 @@ class MeetingOptions extends StatelessWidget {
       height: 60,
       color: Colors.grey,
       child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Padding(
             padding: const EdgeInsets.all(8.0),
@@ -23,7 +24,7 @@ class MeetingOptions extends StatelessWidget {
             ),
           ),
           SizedBox(height: 20,),
-          Switch(value: isMute, onChanged: onChanged)
+          Switch.adaptive(value: isMute, onChanged: onChanged)
         ],
       ),
     );

@@ -8,7 +8,8 @@ class JitsiMeetMethods {
   void createMeeting(
       {required String roomName,
       required bool isAudioMuted,
-      required bool isVideoMuted}) async {
+      required bool isVideoMuted,
+      String userName = ''}) async {
     
     try {
       FeatureFlag featureFlag = FeatureFlag();
@@ -16,10 +17,18 @@ class JitsiMeetMethods {
       featureFlag.resolution = FeatureFlagVideoResolution
           .MD_RESOLUTION; // Limit video resolution to 360p
 
+      String name;
+
+      if(userName.isEmpty) {
+        name = _authMethods.user.displayName!;
+      } else {
+        name = userName;
+      }
+
       var options = JitsiMeetingOptions(room: roomName)
         // ..serverURL = "https://someHost.com"
         // ..subject = "Meeting with Gunschu"
-        ..userDisplayName = _authMethods.user.displayName
+        ..userDisplayName = name
         ..userEmail = _authMethods.user.email
         ..userAvatarURL = _authMethods.user.photoURL
         ..audioMuted = isAudioMuted

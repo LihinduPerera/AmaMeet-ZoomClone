@@ -1,7 +1,8 @@
 import 'package:ama_meet/resources/auth_methods.dart';
-import 'package:ama_meet/utils/colors.dart';
+import 'package:ama_meet/resources/jitsi_meet_methods.dart';
 import 'package:ama_meet/widgets/meeting_options.dart';
 import 'package:flutter/material.dart';
+import 'package:jitsi_meet_v1/jitsi_meet.dart';
 
 class VideoCallPage extends StatefulWidget {
   const VideoCallPage({super.key});
@@ -12,6 +13,8 @@ class VideoCallPage extends StatefulWidget {
 
 class _VideoCallPageState extends State<VideoCallPage> {
   final AuthMethods _authMethods = AuthMethods();
+
+  final JitsiMeetMethods _jjm = JitsiMeetMethods();
 
   late TextEditingController meetingIdController;
   late TextEditingController nameController;
@@ -26,8 +29,16 @@ class _VideoCallPageState extends State<VideoCallPage> {
     super.initState();
   }
 
-  _joinMeeting() {
+  @override
+  void dispose() {
+    super.dispose();
+    meetingIdController.dispose();
+    nameController.dispose();
+    JitsiMeet.removeAllListeners(); 
+  }
 
+  _joinMeeting() {
+    _jjm.createMeeting(roomName: meetingIdController.text, isAudioMuted: isAudioMuted, isVideoMuted: isVideoMuted, userName: nameController.text);
   }
 
   @override
