@@ -33,7 +33,7 @@ class _LoginPageState extends State<LoginPage> {
             bool result = await _authMethods.signInWithGoogle(context);
 
             if(result) {
-              
+              Navigator.pushNamed(context, '/home');
             }
           },),
         ],
