@@ -1,4 +1,5 @@
-import 'package:ama_meet/widgets/home_btn_widget.dart';
+import 'package:ama_meet/pages/meeting_history_page.dart';
+import 'package:ama_meet/pages/meeting_page.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatefulWidget {
@@ -17,6 +18,13 @@ class _HomePageState extends State<HomePage> {
     });
   }
 
+  List<Widget> pages = [
+    const MeetingPage(),
+    const MeetingHistoryPage(),
+    Text('Contacts'),
+    Text('Settings')
+  ];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -28,46 +36,7 @@ class _HomePageState extends State<HomePage> {
         centerTitle: true,
       ),
 
-      body: Column(
-        children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              HomeBtnWidget(
-                onPressedFunction: (() {}),
-                btnText: 'New Meeting',
-                btnIcon: Icons.videocam,
-              ),
-              HomeBtnWidget(
-                onPressedFunction: (() {}),
-                btnText: 'Join Meeting',
-                btnIcon: Icons.add_box_rounded,
-              ),
-              HomeBtnWidget(
-                onPressedFunction: (() {}),
-                btnText: 'Shedule',
-                btnIcon: Icons.calendar_today,
-              ),
-              HomeBtnWidget(
-                onPressedFunction: (() {}),
-                btnText: 'Share Screen',
-                btnIcon: Icons.arrow_upward_rounded,
-              ),
-            ],
-          ),
-          const Expanded(
-            child: Center(
-              child: Text(
-                'Create or join the meeting',
-                style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 18
-                ),
-              ),
-            ),
-          ),
-        ],
-      ),
+      body: pages[_page],
       
       bottomNavigationBar: BottomNavigationBar(
         selectedItemColor: Colors.black,
