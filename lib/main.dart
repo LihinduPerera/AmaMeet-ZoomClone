@@ -20,6 +20,7 @@ class MyApp extends StatelessWidget {
       title: 'Ama Meet',
       theme: ThemeData(
         fontFamily: 'Poppins'
+
       ),
       routes: {
         '/login': (context) => const LoginPage(),
