@@ -1,8 +1,21 @@
+import 'dart:math';
+
+import 'package:ama_meet/resources/jitsi_meet_methods.dart';
 import 'package:ama_meet/widgets/home_btn_widget.dart';
 import 'package:flutter/material.dart';
 
 class MeetingPage extends StatelessWidget {
-  const MeetingPage({super.key});
+  MeetingPage({super.key});
+
+  final JitsiMeetMethods _jmm = JitsiMeetMethods();
+
+  createNewMeeting() async {
+
+    var random = Random();
+    String roomName = (random.nextInt(10000000) + 10000000).toString();
+
+    _jmm.createMeeting(roomName: roomName, isAudioMuted: true, isVideoMuted: true);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -12,7 +25,7 @@ class MeetingPage extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               HomeBtnWidget(
-                onPressedFunction: (() {}),
+                onPressedFunction: createNewMeeting,
                 btnText: 'New Meeting',
                 btnIcon: Icons.videocam,
               ),
